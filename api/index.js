@@ -12,21 +12,16 @@ function writeData(data) {
   fs.writeFileSync("./data/vendorA.json", JSON.stringify(data, null, 2));
 }
 
-// ========== Controller Functions ==========
-
-// Homepage
-function home(req, res) {
-  res.send("Vendor A API aktif. Gunakan endpoint: /api/vendorA");
-}
+// ========== ROUTES (semua di root "/") ==========
 
 // GET semua produk
-function getAllProducts(req, res) {
+app.get("/", (req, res) => {
   const data = readData();
   res.json(data);
-}
+});
 
 // GET produk by ID
-function getProductById(req, res) {
+app.get("/:id", (req, res) => {
   const id = req.params.id;
   const data = readData();
   const item = data.find((p) => p.kd_produk === id);
@@ -36,10 +31,10 @@ function getProductById(req, res) {
   }
 
   res.json(item);
-}
+});
 
 // POST tambah produk
-function addProduct(req, res) {
+app.post("/", (req, res) => {
   const { kd_produk, nm_brg, hrg, ket_stok } = req.body;
 
   if (!kd_produk || !nm_brg || !hrg || !ket_stok) {
@@ -61,10 +56,10 @@ function addProduct(req, res) {
     message: "Produk berhasil ditambahkan",
     data: newProduct,
   });
-}
+});
 
 // PUT update produk
-function updateProduct(req, res) {
+app.put("/:id", (req, res) => {
   const id = req.params.id;
   const data = readData();
   const index = data.findIndex((p) => p.kd_produk === id);
@@ -82,10 +77,10 @@ function updateProduct(req, res) {
     message: "Produk berhasil diperbarui",
     data: updated,
   });
-}
+});
 
 // DELETE hapus produk
-function deleteProduct(req, res) {
+app.delete("/:id", (req, res) => {
   const id = req.params.id;
   const data = readData();
   const index = data.findIndex((p) => p.kd_produk === id);
@@ -101,15 +96,7 @@ function deleteProduct(req, res) {
     message: "Produk berhasil dihapus",
     deleted: deleted[0],
   });
-}
+});
 
-// ROUTES
-app.get("/", home);
-app.get("/vendorA", getAllProducts);
-app.get("/vendorA/:id", getProductById);
-app.post("/vendorA", addProduct);
-app.put("/vendorA/:id", updateProduct);
-app.delete("/vendorA/:id", deleteProduct);
-
-// WAJIB untuk Vercel serverless
+// WAJIB UNTUK VERCEL
 module.exports = app;
