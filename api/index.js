@@ -16,7 +16,7 @@ function writeData(data) {
 
 // Homepage
 function home(req, res) {
-  res.send("Vendor A API aktif. Gunakan endpoint: /vendorA");
+  res.send("Vendor A API aktif. Gunakan endpoint: /api/vendorA");
 }
 
 // GET semua produk
@@ -103,7 +103,7 @@ function deleteProduct(req, res) {
   });
 }
 
-// ========== Route Definitions ==========
+// ROUTES
 app.get("/", home);
 app.get("/vendorA", getAllProducts);
 app.get("/vendorA/:id", getProductById);
@@ -111,7 +111,5 @@ app.post("/vendorA", addProduct);
 app.put("/vendorA/:id", updateProduct);
 app.delete("/vendorA/:id", deleteProduct);
 
-// Jalankan Server
-app.listen(3000, () => {
-  console.log("Vendor A berjalan di port 3000");
-});
+// WAJIB untuk Vercel serverless
+module.exports = app;
