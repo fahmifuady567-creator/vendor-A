@@ -4,5 +4,29 @@
     "nm_brg": "joshua coklat",
     "hrg": "12000",
     "ket_stok": "ada"
+  },
+  {
+    "kd_produk": "A002",
+    "nm_brg": "Es Teh Manis",
+    "hrg": "5000",
+    "ket_stok": "ada"
+  },
+  {
+    "kd_produk": "A003",
+    "nm_brg": "Kopi Hitam",
+    "hrg": "8000",
+    "ket_stok": "ada"
+  },
+  {
+    "kd_produk": "A004",
+    "nm_brg": "Lemon Tea",
+    "hrg": "9000",
+    "ket_stok": "habis"
+  },
+  {
+    "kd_produk": "A005",
+    "nm_brg": "Air Mineral",
+    "hrg": "4000",
+    "ket_stok": "ada"
   }
 ]
